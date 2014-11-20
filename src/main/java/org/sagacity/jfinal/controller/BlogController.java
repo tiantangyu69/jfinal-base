@@ -2,7 +2,6 @@ package org.sagacity.jfinal.controller;
 
 import org.sagacity.jfinal.interceptor.BlogInterceptor;
 import org.sagacity.jfinal.model.Blog;
-import org.sagacity.jfinal.validator.BlogValidator;
 
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
@@ -23,7 +22,6 @@ public class BlogController extends Controller {
 		
 	}
 
-	@Before(BlogValidator.class)
 	public void save() {
 		getModel(Blog.class).save();
 		redirect("/blog");
@@ -33,7 +31,6 @@ public class BlogController extends Controller {
 		setAttr("blog", Blog.instance.findById(getParaToInt()));
 	}
 
-	@Before(BlogValidator.class)
 	public void update() {
 		getModel(Blog.class).update();
 		redirect("/blog");
