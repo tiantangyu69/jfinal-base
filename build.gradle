@@ -1,0 +1,63 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.7
+group = 'org.sagacity.jfinal'
+version = '1.0'
+description = "jfinal-base项目"
+// project.buildDir = 'target'定义编译目录
+
+ext{
+    c3p0Version = "0.9.1.2"
+} 
+
+// 为jar添加说明
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'jfinal-base project',
+                   'Implementation-Version': version
+    }
+}
+
+// 配置仓库，使用nexus私服
+repositories {
+    maven {
+        url "http://211.166.11.233:8081/nexus/content/groups/public/"
+    }
+}
+
+// 配置项目依赖
+dependencies {
+    compile (
+        "c3p0:c3p0:0.9.1.2",
+        "com.google.guava:guava:18.0",
+        "com.jfinal:jfinal:1.9",
+        "com.jfinal:jfinal-ext:3.1.2",
+        "log4j:log4j:1.2.17",
+        "mysql:mysql-connector-java:5.1.34",
+        "jstl:jstl:1.2"
+    )
+    testCompile(
+        "junit:junit:4.10"
+    )
+}
+
+// 给test任务传递参数
+test {
+    systemProperties 'property': 'value'
+}
+
+// 发布jar包信息, 发布到nexus私服中
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = "org.sagacity"
+            pom.artifactId = "org.sagacity.jfinal.web"
+            pom.version = "1.0.0-SNAPSHOT"
+            repository(url: "http://211.166.11.233:8081/nexus/content/repositories/snapshots/") {
+                authentication(userName: "admin", password: "bjluyou")
+            }
+        }
+    }
+}
