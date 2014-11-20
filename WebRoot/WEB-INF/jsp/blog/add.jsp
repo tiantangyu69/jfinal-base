@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <link href="${basePath}static/css/manage.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="${basePath}static/js/jquery-1.4.4.min.js" type="text/javascript" ></script>
+<script src="${basePath}static/common/jquery-1.7.2.min.js" type="text/javascript" ></script>
 </head>
 <body>
 	<div class="manage_container">
