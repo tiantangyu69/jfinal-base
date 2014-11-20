@@ -18,7 +18,7 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
 
 /**
- * API引导式配置
+ * 项目API引导式配置
  */
 public class WebConfig extends JFinalConfig {
 
